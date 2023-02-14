@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
+use App\Http\Controllers\MTCityController;
+
 class HomeController extends Controller
 {
     /**
@@ -26,12 +28,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
-    {
-        if (view()->exists($request->path())) {
-            return view($request->path());
+    public function index(Request $request){
+        $link = $request->path();
+        if ($link == 'city') {
+            (new MTCityController)->index();
+            
         }
-        return abort(404);
+
+        // if (view()->exists('church.master.'.$request->path())) {
+        //     return view('church.master.'.$request->path());
+        // }
+        // return abort(404);
     }
 
     public function root()
