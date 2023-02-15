@@ -30,9 +30,12 @@ class HomeController extends Controller
      */
     public function index(Request $request){
         $link = $request->path();
-        if ($link == 'city') {
-            (new MTCityController)->index();
+        if ($link == 'state') {
+            (new MTStateController)->index();
             
+        } else if ($link == 'city') {
+            (new MTCityController)->index();
+
         }
 
         // if (view()->exists('church.master.'.$request->path())) {
