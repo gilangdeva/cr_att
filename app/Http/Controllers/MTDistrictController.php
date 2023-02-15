@@ -33,7 +33,7 @@ class MTDistrictController extends Controller
             DistrictModel::upsert([
                 [
                     'district_id'   => $dist_id, 
-                    'district_name' => $dist_name, 
+                    'district_name' => ucwords(strtolower($dist_name)), 
                     'city_id'       => $city_id, 
                     'creator'       => $xuser, 
                     'pic'           => $xuser
