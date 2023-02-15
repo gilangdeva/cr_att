@@ -31,10 +31,10 @@ class MTStateController extends Controller
             // Eloquent Insert Data
             StateModel::upsert([
                 [
-                    'state_id'          => $state_id,
-                    'state_name'        => ucwords(strtolower($state_name)),
-                    'creator'           => $xuser,
-                    'pic'               => $xuser
+                    'state_id'      => $state_id,
+                    'state_name'    => ucwords(strtolower($state_name)),
+                    'creator'       => $xuser,
+                    'pic'           => $xuser
                 ],
             ],
                 [
