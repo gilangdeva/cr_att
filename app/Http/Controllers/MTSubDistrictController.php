@@ -32,8 +32,8 @@ class MTSubDistrictController extends Controller
             // Eloquent Insert Data
             SubDistrictModel::upsert([
                 [
-                    'sub_district_id'       => $subd_id,
-                    'sub_district_name' => $subd_name,
+                    'sub_district_id'   => $subd_id,
+                    'sub_district_name' => ucwords(strtolower($subd_name)),
                     'district_id'       => $dist_id,
                     'creator'           => $xuser,
                     'pic'               => $xuser
