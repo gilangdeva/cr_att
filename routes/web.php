@@ -32,3 +32,6 @@ Route::get('/city/{id}', [App\Http\Controllers\MTCityController::class, 'cityGet
 Route::get('/district/{id}', [App\Http\Controllers\MTDistrictController::class, 'districtGetAPI'])->name('districtapi');
 
 Route::get('/sub-district/{id}', [App\Http\Controllers\MTSubDistrictController::class, 'subDistrictGetAPI'])->name('subdistrictapi');
+
+// Config Attendance
+Route::get('/config/att', [App\Http\Controllers\ConfigAttendanceController::class, 'index'])->name('configatt');
