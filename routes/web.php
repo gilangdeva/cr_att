@@ -28,3 +28,7 @@ Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class
 Route::get('/state/{id}', [App\Http\Controllers\MTStateController::class, 'stateGetAPI'])->name('stateapi');
 
 Route::get('/city/{id}', [App\Http\Controllers\MTCityController::class, 'cityGetAPI'])->name('cityapi');
+
+Route::get('/district/{id}', [App\Http\Controllers\MTDistrictController::class, 'districtGetAPI'])->name('districtapi');
+
+Route::get('/sub-district/{id}', [App\Http\Controllers\MTSubDistrictController::class, 'subDistrictGetAPI'])->name('subdistrictapi');

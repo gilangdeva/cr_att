@@ -22,21 +22,31 @@ class MTCityController extends Controller
         $row_c = count(json_decode($response, true));
 
         for ($i=0; $i<$row_c; $i++){
-            
             $city_id    = $response[$i]['id'];
             $city_name  = $response[$i]['name'];
             $state_id   = $response[$i]['province_id'];
-            $xuser      = 2;
+            $xuser      = 1;
             
             // Add Current Session ID to Input Creator & PIC
             
             // Eloquent Insert Data
             CityModel::upsert([
-                ['city_id' => $city_id, 'city_name' => $city_name, 'state_id' => $state_id, 'creator' => $xuser, 'pic' => $xuser],
-            ], ['city_id'], ['city_name','state_id', 'pic']);
-
-        }      
-
-        
+                [
+                    'city_id'   => $city_id, 
+                    'city_name' => $city_name, 
+                    'state_id'  => $state_id, 
+                    'creator'   => $xuser, 
+                    'pic'       => $xuser
+                ],
+            ],
+                [
+                    'city_id' // Protected Primary Key
+                ], [
+                    'city_name', // Change this field when on conflict
+                    'state_id', 
+                    'pic'
+                ]
+            );
+        }
     }
 }
