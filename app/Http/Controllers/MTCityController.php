@@ -33,7 +33,7 @@ class MTCityController extends Controller
             CityModel::upsert([
                 [
                     'city_id'   => $city_id, 
-                    'city_name' => $city_name, 
+                    'city_name' => ucwords(strtolower($city_name)), 
                     'state_id'  => $state_id, 
                     'creator'   => $xuser, 
                     'pic'       => $xuser
