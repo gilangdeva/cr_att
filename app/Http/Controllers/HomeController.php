@@ -29,19 +29,10 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(Request $request){
-        $link = $request->path();
-        if ($link == 'state') {
-            (new MTStateController)->index();
-            
-        } else if ($link == 'city') {
-            (new MTCityController)->index();
-
+        if (view()->exists($request->path())) {
+            return view($request->path());
         }
-
-        // if (view()->exists('church.master.'.$request->path())) {
-        //     return view('church.master.'.$request->path());
-        // }
-        // return abort(404);
+        return abort(404);
     }
 
     public function root()
