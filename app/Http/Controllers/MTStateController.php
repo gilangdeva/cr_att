@@ -32,7 +32,7 @@ class MTStateController extends Controller
             StateModel::upsert([
                 [
                     'state_id'          => $state_id,
-                    'state_name'        => $state_name,
+                    'state_name'        => ucwords(strtolower($state_name)),
                     'creator'           => $xuser,
                     'pic'               => $xuser
                 ],
