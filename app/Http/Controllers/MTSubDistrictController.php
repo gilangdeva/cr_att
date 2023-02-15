@@ -25,17 +25,17 @@ class MTSubDistrictController extends Controller
             $subd_id    = $response[$i]['id'];
             $subd_name  = $response[$i]['name'];
             $dist_id    = $response[$i]['district_id'];
-            $xuser      = 1;
-            
+            $xuser      = 2;
+
             // Add Current Session ID to Input Creator & PIC
-            
+
             // Eloquent Insert Data
             SubDistrictModel::upsert([
                 [
-                    'sub_district_id'       => $subd_id, 
-                    'sub_district_name' => $subd_name, 
-                    'district_id'       => $dist_id, 
-                    'creator'           => $xuser, 
+                    'sub_district_id'       => $subd_id,
+                    'sub_district_name' => $subd_name,
+                    'district_id'       => $dist_id,
+                    'creator'           => $xuser,
                     'pic'               => $xuser
                 ],
             ],
@@ -43,7 +43,7 @@ class MTSubDistrictController extends Controller
                     'sub_district_id' // Protected Primary Key
                 ], [
                     'sub_district_name', // Change this field when on conflict
-                    'district_id', 
+                    'district_id',
                     'pic'
                 ]
             );
