@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
 use App\Models\ConfigAttendanceModel;
 
 class ConfigAttendanceController extends Controller
@@ -28,7 +27,9 @@ class ConfigAttendanceController extends Controller
                 'check_in_before' => $check_in_val,
                 'status'          => 1,
                 'creator'         => $xuser,
-                'pic'             => $xuser
+                'created_at'      => date('Y-m-d H:i:s', strtotime('+0 hours')),
+                'pic'             => $xuser,
+                'updated_at'      => date('Y-m-d H:i:s', strtotime('+0 hours'))
             ],
         ],
             [
@@ -39,6 +40,9 @@ class ConfigAttendanceController extends Controller
             ]
         );
 
-        
+        ConfigAttendanceModel::where('att_config_id','<>', $id[0]->att_config_id)
+            ->update(['status' => 0, 'pic' => $xuser]);
+
+        return Redirect('/config/att');
     }
 }
