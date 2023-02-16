@@ -23,7 +23,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('roo
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+// Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 Route::get('/state', [App\Http\Controllers\MTStateController::class, 'stateGetAPI'])->name('stateapi');
 
@@ -35,3 +35,13 @@ Route::get('/sub-district/{id}', [App\Http\Controllers\MTSubDistrictController::
 
 // Config Attendance
 Route::get('/config/att', [App\Http\Controllers\ConfigAttendanceController::class, 'index'])->name('configatt');
+
+Route::get('/config/web', [App\Http\Controllers\ConfigWebsiteController::class, 'index'])->name('configweb');
+Route::post('/config/input-config-web', [App\Http\Controllers\ConfigWebsiteController::class, 'inputconfigweb'])->name('storeconfigweb');
+
+
+
+
+
+
+Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
