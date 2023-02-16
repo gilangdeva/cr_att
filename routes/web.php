@@ -35,3 +35,4 @@ Route::get('/sub-district/{id}', [App\Http\Controllers\MTSubDistrictController::
 
 // Config Attendance
 Route::get('/config/att', [App\Http\Controllers\ConfigAttendanceController::class, 'index'])->name('configatt');
+Route::post('/config-att-store', [App\Http\Controllers\ConfigAttendanceController::class, 'insertConfigAttendance'])->name('store.configatt');
