@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,26 +16,23 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
-//Language Translation
-Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-//Update User Details
-Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-
-Route::get('/state', [App\Http\Controllers\MTStateController::class, 'stateGetAPI'])->name('stateapi');
-
-Route::get('/city/{id}', [App\Http\Controllers\MTCityController::class, 'cityGetAPI'])->name('cityapi');
-
-Route::get('/district/{id}', [App\Http\Controllers\MTDistrictController::class, 'districtGetAPI'])->name('districtapi');
-
-Route::get('/sub-district/{id}', [App\Http\Controllers\MTSubDistrictController::class, 'subDistrictGetAPI'])->name('subdistrictapi');
-
-// Config Attendance
-Route::get('/config/att', [App\Http\Controllers\ConfigAttendanceController::class, 'index'])->name('configatt');
-Route::post('/config-att-store', [App\Http\Controllers\ConfigAttendanceController::class, 'insertConfigAttendance'])->name('store.configatt');
+require __DIR__.'/auth.php';
