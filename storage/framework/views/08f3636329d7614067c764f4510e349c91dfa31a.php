@@ -1,10 +1,10 @@
-@extends('layouts.master')
-@section('title') Konfigurasi  @endsection
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1') Konfigurasi @endslot
-        @slot('title') Konfigurasi Jam  @endslot
-    @endcomponent
+
+<?php $__env->startSection('title'); ?> Konfigurasi  <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?> Konfigurasi <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?> Konfigurasi Jam  <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
     <!-- Start Content -->
     <div class="row">
@@ -15,16 +15,17 @@
                 </div><!-- end card header -->
                 <div class="card-body">
                     <div class="live-preview">
-                        <form id="attConfigForm" class="row g-3" action="{{ route('store.configatt') }}" method="POST" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                        <form id="attConfigForm" class="row g-3" action="<?php echo e(route('store.configatt')); ?>" method="POST" enctype="multipart/form-data">
+                            <?php echo e(csrf_field()); ?>
+
                             <div class="col-lg-12">
                                 <p class="text-muted">Input nilai dalam satuan Menit sebagai range toleransi jam kehadiran.</p>
                                 <div class="input-group">
-                                    @if(isset($data))
-                                        <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" name="check_in_before" value="{{ $data->check_in_before }}">
-                                    @else
+                                    <?php if(isset($data)): ?>
+                                        <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" name="check_in_before" value="<?php echo e($data->check_in_before); ?>">
+                                    <?php else: ?>
                                         <input type="number" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" name="check_in_before" value="0">
-                                    @endif
+                                    <?php endif; ?>
                                     <span class="input-group-text" id="basic-addon2">Menit</span>
                                 </div>
                             </div>
@@ -67,17 +68,19 @@
         </div>
     </div>
     <!-- End Content -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('script')
-    <script src="{{ URL::asset('assets/libs/prismjs/prismjs.min.js') }}"></script>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(URL::asset('assets/libs/prismjs/prismjs.min.js')); ?>"></script>
     <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
-    <script src="{{ URL::asset('assets/js/pages/modal.init.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/js/pages/modal.init.js')); ?>"></script>
 
-    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('/assets/js/app.min.js')); ?>"></script>
     <script>
         function submitForm() {
             document.getElementById("attConfigForm").submit();
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\cr_att\resources\views/church/config/attendance.blade.php ENDPATH**/ ?>
