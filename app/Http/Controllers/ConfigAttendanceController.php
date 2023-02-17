@@ -8,6 +8,11 @@ use App\Models\ConfigAttendanceModel;
 
 class ConfigAttendanceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $cfg = ConfigAttendanceModel::where('status', '=', 1)->first();
 
