@@ -20,10 +20,10 @@
                 </div>
                 <!-- end card header -->
                 <div class="card-body">
-                <form action="<?php echo e(route('storeconfigweb')); ?>" method="POST" enctype="multipart/form-data">
-                    <?php echo e(csrf_field()); ?>
-
                     <div class="live-preview">
+                        <form action="<?php echo e(route('storeconfigweb')); ?>" method="POST" enctype="multipart/form-data">
+                        <?php echo e(csrf_field()); ?>
+
                         <div>
                             <div class="row g-3" style="margin-bottom:20px;">
                                 <div class="col-lg-4">
@@ -51,8 +51,8 @@
                             <div class="row g-3" style="margin-bottom:20px;">
                                 <div class="col-lg-12">
                                     <div>
-                                        <label for="exampleFormControlTextarea5" class="form-label">System Description</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                                        <label for="sys_desc" class="form-label">System Description</label>
+                                        <textarea class="form-control" name="sys_desc" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -60,20 +60,21 @@
                             <div class="row g-3" style="margin-bottom:20px;">
                                 <div class="col-lg-6">
                                     <div>
-                                        <label for="icon_field" class="form-label">Icon</label>
+                                        <label for="icon" class="form-label">Icon</label>
                                         <div class="d-flex align-items-center">
-                                            <input type="file" class="form-control" id="icon_field" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                            <button class="btn btn-outline-success" type="button" id="inputGroupFileAddon04">Review</button>
+                                            <input type="file" class="form-control" id="icon" name="icon" aria-describedby="icon" aria-label="Upload">
+                                            
+                                            <button class="btn btn-outline-success" type="button" id="icon_review">Review</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div>
-                                        <label for="logo_field" class="form-label">Logo</label>
+                                        <label for="logo" class="form-label">Logo</label>
                                         <div class="d-flex align-items-center">
-                                            <input type="file" class="form-control" id="logo_field" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                            <button class="btn btn-outline-success" type="button" id="inputGroupFileAddon04">Review</button>
+                                            <input type="file" class="form-control" id="logo" name="logo" aria-describedby="logo" aria-label="Upload">
+                                            <button class="btn btn-outline-success" type="button" id="logo_review">Review</button>
                                         </div>
                                     </div>
                                 </div>
