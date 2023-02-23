@@ -10,9 +10,12 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico')}}">
     @include('layouts.head-css')
+    @viteReactRefresh
+    @vite('resources/js/app.jsx')
+    @inertiaHead
 </head>
 <body>
-
+    @inertia
     <!-- Begin page -->
     <div id="layout-wrapper">
         @include('layouts.topbar')
